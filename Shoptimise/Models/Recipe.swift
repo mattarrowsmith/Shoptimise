@@ -6,9 +6,15 @@
 //
 
 import Foundation
-extension ShoppingList {
-    struct Recipe: Equatable {
+
+struct Recipe: Equatable {
+    let name: String
+    let ingredients: [Ingredient]
+}
+
+extension Recipe {
+    struct Ingredient: Equatable {
         let name: String
-        let ingredients: [Ingredient]
+        let price: Double
     }
 }

@@ -11,7 +11,7 @@ struct ShoppingList: Equatable {
     let name: String
     let recipes: [Recipe]
     let items: [Item]
-    var sharedIngredients: [Ingredient] {
+    var sharedIngredients: [Recipe.Ingredient] {
         let firstRecipeIngredients = self.recipes.first?.ingredients ?? [] //list of ingredients
         let firstRecipeIngredientNames = Set(firstRecipeIngredients.map{ $0.name }) //set of strings ham, bread
         
@@ -26,19 +26,19 @@ struct ShoppingList: Equatable {
             result.intersection(list)
         }
         
-        var commonIngredients = [ShoppingList.Ingredient]()
+        var commonIngredients = [Recipe.Ingredient]()
         
         
         //Improve this once I know more swift!!
-        self.recipes.forEach { Recipe in
-            Recipe.ingredients.forEach { Ingredient in
-                if (commonElements.contains(Ingredient.name)) {
+        self.recipes.forEach { ThisRecipe in //use for in instead of foreach
+            ThisRecipe.ingredients.forEach { ThisIngredient in
+                if (commonElements.contains(ThisIngredient.name)) {
                     
-                    if let row = commonIngredients.firstIndex(where: {$0.name == Ingredient.name}) {
-                        commonIngredients[row] = ShoppingList.Ingredient(name: Ingredient.name, price: commonIngredients[row].price + Ingredient.price)
+                    if let row = commonIngredients.firstIndex(where: {$0.name == ThisIngredient.name}) {
+                        commonIngredients[row] = Recipe.Ingredient(name: ThisIngredient.name, price: commonIngredients[row].price + ThisIngredient.price)
                     }
                     else {
-                        commonIngredients.append(Ingredient)
+                        commonIngredients.append(ThisIngredient)
                     }
                 }
             }
@@ -52,12 +52,3 @@ extension ShoppingList {
         let name: String
     }
 }
-
-extension ShoppingList {
-    struct Ingredient: Equatable {
-        let name: String
-        let price: Double
-    }
-}
-
-
