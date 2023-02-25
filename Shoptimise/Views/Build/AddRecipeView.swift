@@ -7,6 +7,7 @@
 
 import SwiftUI
 struct AddRecipeView: View {
+    @StateObject private var viewModel = AddRecipeViewModel()
     @State private var searchText = ""
     @State private var isExpanded: Bool = false;
     @State private var isExpanded2: Bool = false;
@@ -33,15 +34,15 @@ struct AddRecipeView: View {
                     
                     Spacer()
                 }
-                List(){
+                List($viewModel.Recipes, id: \.name) { $recipe in
                     Section(){
-                        DisclosureGroup("Fajitas", isExpanded: $isExpanded){
+                        DisclosureGroup(recipe.name, isExpanded: $isExpanded){
                             HStack() {
                                 Spacer()
                                 
                                 VStack(alignment: .center){
                                     
-                                    AsyncImage(url: URL(string: "https://picsum.photos/300"))
+                                    AsyncImage(url: recipe.imageUrl)
                                     Text("{Recipe Description}")
                                 }
                                 
@@ -49,10 +50,9 @@ struct AddRecipeView: View {
                             }
                             
                             VStack(alignment: .leading){
-                                Text("{Ingredient1}")
-                                Text("{Ingredient2}")
-                                Text("{Ingredient3}")
-                                Text("{Ingredient4}")
+                                ForEach(recipe.ingredients, id: \.name) { ingredient in
+                                    Text(ingredient.name)
+                                }
                             }
                         }
                     }

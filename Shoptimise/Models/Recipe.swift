@@ -10,6 +10,7 @@ import Foundation
 struct Recipe: Equatable {
     let name: String
     let ingredients: [Ingredient]
+    let imageUrl: URL
 }
 
 extension Recipe {

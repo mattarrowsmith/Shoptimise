@@ -37,8 +37,8 @@ extension ShopView{
             let item2 = ShoppingList.Item(name: "Knife")
             let item3 = ShoppingList.Item(name: "Fork")
             
-            let recipe = Recipe(name: "Chips", ingredients: [ingredient, ingredient2])
-            let recipe2 = Recipe(name: "Burgers", ingredients: [ingredient3, ingredient4, ingredient5, ingredient6])
+            let recipe = Recipe(name: "Chips", ingredients: [ingredient, ingredient2], imageUrl: URL(string: "https://picsum.photos/300") ?? URL(string: "https://picsum.photos/300")!)
+            let recipe2 = Recipe(name: "Burgers", ingredients: [ingredient3, ingredient4, ingredient5, ingredient6], imageUrl: URL(string: "https://picsum.photos/300") ?? URL(string: "https://picsum.photos/300")!)
             let shoppingListDummy = ShoppingList(name: "Fast Food Shopping List", recipes: [recipe, recipe2], items: [item, item2, item3])
             
             return shoppingListDummy
