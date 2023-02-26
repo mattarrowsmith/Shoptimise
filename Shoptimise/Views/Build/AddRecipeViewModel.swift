@@ -9,18 +9,18 @@ import Foundation
 @MainActor class AddRecipeViewModel: ObservableObject {
     
     @Published var title: String
-    @Published var Recipes: [Recipe]
+    @Published var recipeCells: [RecipeCell]
     
-    init(title: String, Recipes: [Recipe]) {
+    init(title: String, recipes: [Recipe]) {
         self.title = title
-        self.Recipes = Recipes
+        self.recipeCells = recipes.map { RecipeCell(recipe: $0.self) }
     }
     
     init() {
         self.title = "Add Recipe"
-        self.Recipes = AddRecipeViewModel.createDummyList()
+        self.recipeCells = AddRecipeViewModel.createDummyList().map { RecipeCell(recipe: $0.self) }
     }
-
+    
     static func createDummyList() -> [Recipe] {
         let ingredient = Recipe.Ingredient(name: "Potato", price: 1.5)
         let ingredient2 = Recipe.Ingredient(name: "Oil", price: 1)
@@ -37,3 +37,19 @@ import Foundation
         return recipeListDummy
     }
 }
+
+extension AddRecipeViewModel {
+    struct RecipeCell: Identifiable{
+        let id = UUID();
+        let recipe: Recipe
+        
+        var isExpanded: Bool
+        
+        init(recipe: Recipe)
+        {
+            self.recipe = recipe
+            self.isExpanded = false;
+        }
+    }
+}
+

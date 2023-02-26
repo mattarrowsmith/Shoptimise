@@ -9,8 +9,6 @@ import SwiftUI
 struct AddRecipeView: View {
     @StateObject private var viewModel = AddRecipeViewModel()
     @State private var searchText = ""
-    @State private var isExpanded: Bool = false;
-    @State private var isExpanded2: Bool = false;
 
     var body: some View {
         NavigationStack {
@@ -18,31 +16,36 @@ struct AddRecipeView: View {
                 HStack{
                     Spacer()
                     Button("Filter"){
-                        
+                        //action
                     }
                     .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                    //.background(Color.green)
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(Color.white)
+                    .background(Color.accentColor)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
+
                     
-                    Spacer()
                     Button("Sort"){
-                        
+                        //action
                     }
                     .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                    //.background(Color.red)
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(Color.white)
+                    .background(Color.accentColor)
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     
                     Spacer()
-                }
-                List($viewModel.Recipes, id: \.name) { $recipe in
+                }.padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                List($viewModel.recipeCells) { $recipeCell in
                     Section(){
-                        DisclosureGroup(recipe.name, isExpanded: $isExpanded){
+                        DisclosureGroup(recipeCell.recipe.name, isExpanded: $recipeCell.isExpanded){
                             HStack() {
                                 Spacer()
                                 
                                 VStack(alignment: .center){
                                     
-                                    AsyncImage(url: recipe.imageUrl)
+                                    AsyncImage(url: recipeCell.recipe.imageUrl)
+                                        .frame(width: 300, height: 300)
                                     Text("{Recipe Description}")
                                 }
                                 
@@ -50,7 +53,7 @@ struct AddRecipeView: View {
                             }
                             
                             VStack(alignment: .leading){
-                                ForEach(recipe.ingredients, id: \.name) { ingredient in
+                                ForEach(recipeCell.recipe.ingredients, id: \.name) { ingredient in
                                     Text(ingredient.name)
                                 }
                             }
