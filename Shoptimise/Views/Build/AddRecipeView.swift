@@ -15,8 +15,11 @@ struct AddRecipeView: View {
             VStack {
                 HStack{
                     Spacer()
-                    Button("Filter"){
+                    Button(){
                         //action
+                    } label: {
+                        Text("Filter")
+                        Image(systemName: "slider.horizontal.3")
                     }
                     .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                     .frame(maxWidth: .infinity)
@@ -25,8 +28,11 @@ struct AddRecipeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 5))
 
                     
-                    Button("Sort"){
+                    Button(){
                         //action
+                    } label: {
+                        Text("Sort")
+                        Image(systemName: "arrow.up.arrow.down")
                     }
                     .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                     .frame(maxWidth: .infinity)
@@ -35,26 +41,28 @@ struct AddRecipeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     
                     Spacer()
-                }.padding(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-                List($viewModel.recipeCells) { $recipeCell in
-                    Section(){
-                        DisclosureGroup(recipeCell.recipe.name, isExpanded: $recipeCell.isExpanded){
-                            HStack() {
-                                Spacer()
-                                
-                                VStack(alignment: .center){
+                }.padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
+                List(){
+                    Section("Recipes"){
+                        ForEach($viewModel.recipeCells) { $recipeCell in
+                            DisclosureGroup(recipeCell.recipe.name, isExpanded: $recipeCell.isExpanded){
+                                HStack() {
+                                    Spacer()
                                     
-                                    AsyncImage(url: recipeCell.recipe.imageUrl)
-                                        .frame(width: 300, height: 300)
-                                    Text("{Recipe Description}")
+                                    VStack(alignment: .center){
+                                        
+                                        AsyncImage(url: recipeCell.recipe.imageUrl)
+                                            .frame(width: 300, height: 300)
+                                        Text("{Recipe Description}")
+                                    }
+                                    
+                                    Spacer()
                                 }
                                 
-                                Spacer()
-                            }
-                            
-                            VStack(alignment: .leading){
-                                ForEach(recipeCell.recipe.ingredients, id: \.name) { ingredient in
-                                    Text(ingredient.name)
+                                VStack(alignment: .leading){
+                                    ForEach(recipeCell.recipe.ingredients, id: \.name) { ingredient in
+                                        Text(ingredient.name)
+                                    }
                                 }
                             }
                         }
