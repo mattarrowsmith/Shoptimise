@@ -9,20 +9,26 @@ import SwiftUI
 
 struct ShopView: View {
     @StateObject private var viewModel = ShopViewModel()
+    @State private var selectedShoppingList : ShoppingList = ShopViewModel.createDummyList(name: "Create a list")
+    @State private var selectedShoppingListIndex : Int = 0
     
     
     var body: some View {
         NavigationStack {
             VStack
             {
-                List($viewModel.shoppingLists, id: \.name) { $shoppingList in
-                    Section(shoppingList.name + ":") {
-                        
-                    }.font(Font.headline)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    
+                
+                Form() {
+                    Section {
+                        Picker("Select List", selection: $selectedShoppingList) {
+                            ForEach($viewModel.shoppingLists, id: \.self) { $list in
+                                Text(list.name)
+                            }
+                        }
+                    }
+
                     Section("Shared Items"){
-                        ForEach(shoppingList.sharedIngredients, id: \.name) { item in
+                        ForEach(selectedShoppingList.sharedIngredients, id: \.name) { item in
                             HStack{
                                 Text(item.name)
                                 Spacer()
@@ -31,7 +37,7 @@ struct ShopView: View {
                         }
                     }
 
-                    ForEach(shoppingList.recipes, id: \.name) { recipe in
+                    ForEach(selectedShoppingList.recipes, id: \.name) { recipe in
                         Section(recipe.name){
                             ForEach(recipe.ingredients, id: \.name) { ingredient in
                                 HStack{
@@ -39,13 +45,12 @@ struct ShopView: View {
                                     Spacer()
                                     Text(String(ingredient.price))
                                 }
-                                
                             }
                         }
                     }
-                    
+
                     Section("Other Items"){
-                        ForEach(shoppingList.items, id: \.name) { item in
+                        ForEach(selectedShoppingList.items, id: \.name) { item in
                             HStack{
                                 Text(item.name)
                                 Spacer()
@@ -53,10 +58,7 @@ struct ShopView: View {
                             }
                         }
                     }
-                    
-                    
                 }
-
             }
             .navigationTitle("Shop")
             .toolbar {
@@ -69,56 +71,6 @@ struct ShopView: View {
     }
 }
 
-
-
-
-
-//struct ShopView: View {
-//    var body: some View {
-//        NavigationStack {
-//            ZStack(alignment: .top) {
-//                VStack
-//                {
-//                    List {
-//                        Section("Mexican Food") {
-//                            Text("Burger Pizza Curry...")
-//                            Text("Fajitas, Pasta, Lasagna...")
-//                            Text("Ice Cream, Cake, Pie...")
-//                        }
-//                        Section("Budget Week") {
-//                            Text("Burger Pizza Curry...")
-//                            Text("Fajitas, Pasta, Lasagna...")
-//                            Text("Ice Cream, Cake, Pie...")
-//                        }
-//                    }.scrollContentBackground(.hidden)
-//                        .edgesIgnoringSafeArea(.top)
-//
-//
-//                    //Text("Bottom Bound")
-//
-//
-//
-//
-//                }
-//                .offset(x:0, y:60)
-//                .padding([.bottom], 60)
-//                .background(Color.background)
-//
-//
-//                VStack{
-//                    PageHeaderView(title: "Shop")
-//                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 220)
-//            }
-//            .background(Color.red)
-//
-//            .navigationTitle("Navbar")
-//            .navigationBarHidden(true);
-//        }
-//
-//    }
-//}
-
-
 struct ShopView_Previews: PreviewProvider {
     static var previews: some View {
         ShopView()
@@ -126,32 +78,7 @@ struct ShopView_Previews: PreviewProvider {
 }
 
 
-//struct ShopView: View {
-//    var body: some View {
-//        NavigationStack {
-//            ZStack(alignment: .top) {
-//                VStack
-//                {
-//                    Form {
+//                    Section(selectedShoppingList.name) {
 //
-//                        Section {
-//                            Text("Burger Pizza Curry...")
-//                            Text("Fajitas, Pasta, Lasagna...")
-//                            Text("Ice Cream, Cake, Pie...")
-//                        }
-//                    }
-//
-//                    Text("HELLO")
-//
-//                }.offset(x:0, y:50)
-//
-//                VStack{
-//                    PageHeaderView(title: "Shop")
-//                }.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 220)
-//            }
-//
-//        }
-//        .navigationTitle("Navbar")
-//        .navigationBarHidden(true);
-//    }
-//}
+//                    }.font(Font.headline)
+//                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))

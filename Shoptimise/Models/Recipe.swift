@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct Recipe: Equatable {
+struct Recipe: Equatable, Hashable {
     let name: String
     let ingredients: [Ingredient]
     let imageUrl: URL
 }
 
 extension Recipe {
-    struct Ingredient: Equatable {
+    struct Ingredient: Equatable, Hashable {
         let name: String
         let price: Double
     }
