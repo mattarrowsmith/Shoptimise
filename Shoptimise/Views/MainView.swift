@@ -15,9 +15,9 @@ struct MainView: View {
                     Label("Shop", systemImage: "cart")
                 }
 
-            BuildView()
+            ManageListsView()
                 .tabItem {
-                    Label("Build", systemImage: "list.bullet.clipboard")
+                    Label("Lists", systemImage: "list.bullet.clipboard")
                 }
             
             AddRecipeView()

@@ -1,25 +1,35 @@
 //
-//  BuildView.swift
+//  ManageListsView.swift
 //  Shoptimise
 //
-//  Created by Arrowsmith, Matthew on 08/02/2023.
+//  Created by Arrowsmith, Matthew on 20/03/2023.
 //
 
 import SwiftUI
 
-struct BuildView: View {
+struct ManageListsView: View {
+    
     @State private var searchText = ""
-
+    
     var body: some View {
         NavigationStack {
             VStack {
-//                Text("This is where you will build your shopping lists. Start picking recipes and suggestions will appear that share common ingredients. The colour of a recipe indicates how many ingredients it shares with your current recipes.").padding()
+                Text("This is where you will build your shopping lists. Select a list to edit or click the plus to create a new list.").padding()
                 
                 Spacer()
                 List(){
                     Section(){
-                        Text("Recipe1")
-                        Text("Recipe2")
+                        NavigationLink {
+                            EditListView(listName: "American NICE")
+                        } label: {
+                            Text("American")
+                        }
+                        
+                        NavigationLink {
+                            EditListView(listName: "Mexican Do Attitude")
+                        } label: {
+                            Text("Mexican")
+                        }
                     } header: {
                         HStack{
                             Text("Add Recipes")
@@ -27,15 +37,11 @@ struct BuildView: View {
                             Image(systemName: "plus")
                         }
                     }
-                    Section("Other Items"){
-                        Text("Dishwasher Tablets")
-                        Text("Cloths")
-                    }
                 }
                 
             }
             .searchable(text: $searchText)
-            .navigationTitle("Build")
+            .navigationTitle("Your Lists")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Image(systemName: "info.circle")
@@ -47,11 +53,8 @@ struct BuildView: View {
     }
 }
 
-
-
-
-struct BuildView_Previews: PreviewProvider {
+struct ManageListsView_Previews: PreviewProvider {
     static var previews: some View {
-        BuildView()
+        ManageListsView()
     }
 }
