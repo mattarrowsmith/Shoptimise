@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject var session = Session()
+
     var body: some View {
         TabView {
             ShopView()
@@ -29,7 +31,7 @@ struct MainView: View {
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
-        }
+        }.environmentObject(session)
     }
 }
 

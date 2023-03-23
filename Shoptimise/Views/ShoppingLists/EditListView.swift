@@ -9,10 +9,9 @@ import SwiftUI
 
 struct EditListView: View {
     @State private var searchText = ""
-    
     @StateObject private var viewModel: EditListViewModel
-    init(listName: String){
-        _viewModel = StateObject(wrappedValue: EditListViewModel(listName: listName))
+    init(shoppingList: ShoppingList){
+        _viewModel = StateObject(wrappedValue: EditListViewModel(shoppingList: shoppingList))
     }
     
     var body: some View {
@@ -21,21 +20,23 @@ struct EditListView: View {
                 Text("This is where you will build your shopping lists. Start picking recipes and suggestions will appear that share common ingredients. The colour of a recipe indicates how many ingredients it shares with your current recipes.").padding()
                 
                 Spacer()
-                List(){
+                List{
                     Section(){
-                        Text("BBQ Beef")
-                        Text("Burgers")
+                        ForEach($viewModel.shoppingList.wrappedValue.recipes, id: \.name) { recipe in
+                            Text(recipe.name)
+                        }
                     } header: {
                         HStack{
-                            Text("Add Recipes")
+                            Text("Recipes")
                             Spacer()
                             Image(systemName: "plus")
                         }
                     }
                     
                     Section(){
-                        Text("Sponges")
-                        Text("Washing Up Liquid")
+                        ForEach($viewModel.shoppingList.wrappedValue.items, id: \.name) { item in
+                            Text(item.name)
+                        }
                     } header: {
                         HStack{
                             Text("Other Items")
@@ -46,20 +47,21 @@ struct EditListView: View {
                 }
                 
             }
-            .searchable(text: $searchText)
-            .navigationTitle($viewModel.title)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Image(systemName: "info.circle")
-                    
-                }
+        }
+        .searchable(text: $searchText)
+        .navigationTitle($viewModel.shoppingList.wrappedValue.name)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Image(systemName: "info.circle")
+                
             }
         }
     }
 }
 
+
 struct BuildView_Previews: PreviewProvider {
     static var previews: some View {
-        EditListView(listName: "Preview List Name")
+        EditListView(shoppingList: EditListView.PreviewHelper().shoppingList)
     }
 }

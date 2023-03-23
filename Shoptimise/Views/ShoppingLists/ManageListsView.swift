@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ManageListsView: View {
-    
+    @EnvironmentObject var session: Session
     @State private var searchText = ""
     
     var body: some View {
@@ -20,13 +20,13 @@ struct ManageListsView: View {
                 List(){
                     Section(){
                         NavigationLink {
-                            EditListView(listName: "American NICE")
+                            EditListView(shoppingList: $session.shoppingLists.wrappedValue.first!)
                         } label: {
                             Text("American")
                         }
                         
                         NavigationLink {
-                            EditListView(listName: "Mexican Do Attitude")
+                            EditListView(shoppingList: $session.shoppingLists.wrappedValue.last!)
                         } label: {
                             Text("Mexican")
                         }

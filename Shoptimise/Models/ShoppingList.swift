@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ShoppingList: Equatable, Hashable {
+struct ShoppingList: Equatable, Hashable, Codable {
     let name: String
     let recipes: [Recipe]
     let items: [Item]
@@ -48,7 +48,8 @@ struct ShoppingList: Equatable, Hashable {
 }
 
 extension ShoppingList {
-    struct Item: Equatable, Hashable {
+    struct Item: Equatable, Hashable, Codable {
         let name: String
+        let price: Double
     }
 }

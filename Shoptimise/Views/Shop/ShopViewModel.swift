@@ -36,9 +36,9 @@ extension ShopView{
             let ingredient5 = Recipe.Ingredient(name: "Bun", price: 1.10)
             let ingredient6 = Recipe.Ingredient(name: "Potato", price: 0.30)
             
-            let item = ShoppingList.Item(name: "Spoon")
-            let item2 = ShoppingList.Item(name: "Knife")
-            let item3 = ShoppingList.Item(name: "Fork")
+            let item = ShoppingList.Item(name: "Spoon", price: 1)
+            let item2 = ShoppingList.Item(name: "Knife", price: 1)
+            let item3 = ShoppingList.Item(name: "Fork", price: 1)
             
             let recipe = Recipe(name: "Chips", ingredients: [ingredient, ingredient2], imageUrl: URL(string: "https://picsum.photos/300") ?? URL(string: "https://picsum.photos/300")!)
             let recipe2 = Recipe(name: "Burgers", ingredients: [ingredient3, ingredient4, ingredient5, ingredient6], imageUrl: URL(string: "https://picsum.photos/300") ?? URL(string: "https://picsum.photos/300")!)
@@ -58,9 +58,9 @@ extension ShopView{
             let ingredient8 = Recipe.Ingredient(name: "Pepper", price: 0.30)
             let ingredient9 = Recipe.Ingredient(name: "Chicken", price: 0.30)
             
-            let item = ShoppingList.Item(name: "Dishwasher Tablets")
-            let item2 = ShoppingList.Item(name: "Kitchen Roll")
-            let item3 = ShoppingList.Item(name: "Sombrero")
+            let item = ShoppingList.Item(name: "Dishwasher Tablets", price: 1)
+            let item2 = ShoppingList.Item(name: "Kitchen Roll", price: 1)
+            let item3 = ShoppingList.Item(name: "Sombrero", price: 1)
             
             let recipe = Recipe(name: "Tacos", ingredients: [ingredient, ingredient2, ingredient3, ingredient4, ingredient5, ingredient6, ingredient7], imageUrl: URL(string: "https://picsum.photos/300") ?? URL(string: "https://picsum.photos/300")!)
             let recipe2 = Recipe(name: "Fajitas", ingredients: [ingredient, ingredient3, ingredient5, ingredient6, ingredient7, ingredient8, ingredient9], imageUrl: URL(string: "https://picsum.photos/300") ?? URL(string: "https://picsum.photos/300")!)
