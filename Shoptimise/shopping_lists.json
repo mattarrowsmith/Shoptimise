@@ -42,6 +42,10 @@
           {
             "name": "Tomato",
             "price": 0.8
+          },
+          {
+            "name": "Ketchup",
+            "price": 1.5
           }
         ],
         "imageUrl": "https://picsum.photo"
