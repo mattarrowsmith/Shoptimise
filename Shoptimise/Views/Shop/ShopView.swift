@@ -8,27 +8,30 @@
 import SwiftUI
 
 struct ShopView: View {
-    @StateObject private var viewModel = ShopViewModel()
-    @State private var selectedShoppingList : ShoppingList = ShopViewModel.createDummyList(name: "Create a list")
-    @State private var selectedShoppingListIndex : Int = 0
-    
+    @State private var selectedShoppingList : ShoppingList = ShopView.PreviewHelper().shoppingList
+    @StateObject private var viewModel: ShopViewModel
+    init(shoppingLists: [ShoppingList]){
+        _viewModel = StateObject(wrappedValue: ShopViewModel(shoppingLists: shoppingLists))
+    }
     
     var body: some View {
         NavigationStack {
             VStack
             {
-                
                 Form() {
                     Section {
-                        Picker("Select List", selection: $selectedShoppingList) {
+                        Picker("Select List", selection: $viewModel.selectedShoppingList) {
                             ForEach($viewModel.shoppingLists, id: \.self) { $list in
                                 Text(list.name)
                             }
                         }
                     }
-
+                    
+                    //Text($viewModel.title.wrappedValue)
+                    
+                    
                     Section("Shared Items"){
-                        ForEach(selectedShoppingList.sharedIngredients, id: \.name) { item in
+                        ForEach($viewModel.selectedShoppingList.sharedIngredients, id: \.self) { $item in
                             HStack{
                                 Text(item.name)
                                 Spacer()
@@ -37,7 +40,7 @@ struct ShopView: View {
                         }
                     }
 
-                    ForEach(selectedShoppingList.recipes, id: \.name) { recipe in
+                    ForEach($viewModel.selectedShoppingList.recipes, id: \.name) { $recipe in
                         Section(recipe.name){
                             ForEach(recipe.ingredients, id: \.name) { ingredient in
                                 HStack{
@@ -73,12 +76,6 @@ struct ShopView: View {
 
 struct ShopView_Previews: PreviewProvider {
     static var previews: some View {
-        ShopView()
+        ShopView(shoppingLists: [ShopView.PreviewHelper().shoppingList])
     }
 }
-
-
-//                    Section(selectedShoppingList.name) {
-//
-//                    }.font(Font.headline)
-//                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))

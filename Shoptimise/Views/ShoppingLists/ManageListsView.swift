@@ -20,12 +20,14 @@ struct ManageListsView: View {
                 List(){
                     Section(){
                         NavigationLink {
+                            //TODO Unwrap correctly
                             EditListView(shoppingList: $session.shoppingLists.wrappedValue.first!)
                         } label: {
                             Text("American")
                         }
                         
                         NavigationLink {
+                            //TODO Unwrap correctly
                             EditListView(shoppingList: $session.shoppingLists.wrappedValue.last!)
                         } label: {
                             Text("Mexican")

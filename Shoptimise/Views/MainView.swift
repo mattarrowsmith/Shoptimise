@@ -12,7 +12,7 @@ struct MainView: View {
 
     var body: some View {
         TabView {
-            ShopView()
+            ShopView(shoppingLists: $session.shoppingLists.wrappedValue)
                 .tabItem {
                     Label("Shop", systemImage: "cart")
                 }
