@@ -15,4 +15,3 @@ class Session : ObservableObject
         self.shoppingLists = ShoppingListLocalRepository().loadShoppingLists();
     }
 }
-

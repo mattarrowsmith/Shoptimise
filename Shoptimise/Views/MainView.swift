@@ -12,7 +12,7 @@ struct MainView: View {
 
     var body: some View {
         TabView {
-            ShopView(shoppingLists: $session.shoppingLists.wrappedValue)
+            ShopView(shoppingLists: $session.shoppingLists.wrappedValue) //this is wrong
                 .tabItem {
                     Label("Shop", systemImage: "cart")
                 }

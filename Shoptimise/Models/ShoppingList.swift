@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ShoppingList: Equatable, Hashable, Codable {
+class ShoppingList: Equatable, Hashable, Codable, ObservableObject {
     let name: String
     var recipes: [Recipe]
     var items: [Item]
@@ -50,6 +50,26 @@ struct ShoppingList: Equatable, Hashable, Codable {
             
         }
     }
+    
+    init(name: String, recipes: [Recipe], items: [Item]) {
+        self.name = name
+        self.recipes = recipes
+        self.items = items
+    }
+    
+    static func == (lhs: ShoppingList, rhs: ShoppingList) -> Bool {
+        let result = (
+            lhs.name == rhs.name &&
+            lhs.recipes == rhs.recipes &&
+            lhs.items == rhs.items
+        )
+        return result
+    }
+    
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(name)
+            hasher.combine(recipes)
+        }
 }
 
 extension ShoppingList {

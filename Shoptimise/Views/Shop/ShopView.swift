@@ -53,11 +53,11 @@ struct ShopView: View {
                     }
 
                     Section("Other Items"){
-                        ForEach(selectedShoppingList.items, id: \.name) { item in
+                        ForEach($viewModel.selectedShoppingList.items, id: \.name) { $item in
                             HStack{
                                 Text(item.name)
                                 Spacer()
-                                Text(String(1.0))
+                                Text(String(item.price))
                             }
                         }
                     }

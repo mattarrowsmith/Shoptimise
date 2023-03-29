@@ -19,18 +19,12 @@ struct ManageListsView: View {
                 Spacer()
                 List(){
                     Section(){
-                        NavigationLink {
-                            //TODO Unwrap correctly
-                            EditListView(shoppingList: $session.shoppingLists.wrappedValue.first!)
-                        } label: {
-                            Text("American")
-                        }
-                        
-                        NavigationLink {
-                            //TODO Unwrap correctly
-                            EditListView(shoppingList: $session.shoppingLists.wrappedValue.last!)
-                        } label: {
-                            Text("Mexican")
+                        ForEach($session.shoppingLists, id: \.name) { $shoppingList in
+                            NavigationLink {
+                                EditListView(shoppingList: shoppingList)
+                            } label: {
+                                Text(shoppingList.name)
+                            }
                         }
                     } header: {
                         HStack{

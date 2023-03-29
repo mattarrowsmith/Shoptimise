@@ -9,10 +9,12 @@ import SwiftUI
 
 struct EditListView: View {
     @State private var searchText = ""
-    @StateObject private var viewModel: EditListViewModel
-    init(shoppingList: ShoppingList){
-        _viewModel = StateObject(wrappedValue: EditListViewModel(shoppingList: shoppingList))
-    }
+    //@StateObject private var viewModel: EditListViewModel
+    @ObservedObject var shoppingList: ShoppingList
+    
+//    init(shoppingList: ShoppingList){
+//        _viewModel = StateObject(wrappedValue: EditListViewModel(shoppingList: shoppingList))
+//    }
     
     var body: some View {
         NavigationStack {
@@ -22,7 +24,7 @@ struct EditListView: View {
                 Spacer()
                 List{
                     Section(){
-                        ForEach($viewModel.shoppingList.wrappedValue.recipes, id: \.name) { recipe in
+                        ForEach($shoppingList.recipes, id: \.name) { $recipe in
                             Text(recipe.name)
                         }
                     } header: {
@@ -34,7 +36,7 @@ struct EditListView: View {
                     }
                     
                     Section(){
-                        ForEach($viewModel.shoppingList.wrappedValue.items, id: \.name) { item in
+                        ForEach($shoppingList.items, id: \.name) { $item in
                             Text(item.name)
                         }
                     } header: {
@@ -44,12 +46,17 @@ struct EditListView: View {
                             Image(systemName: "plus")
                         }
                     }
+                    
+                    Button("ADD RECIPE"){
+                        self.shoppingList.objectWillChange.send()
+                        $shoppingList.recipes.wrappedValue.append(EditListView.dummyRecipe())
+                    }
                 }
                 
             }
         }
         .searchable(text: $searchText)
-        .navigationTitle($viewModel.shoppingList.wrappedValue.name)
+        .navigationTitle(shoppingList.name)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Image(systemName: "info.circle")
@@ -57,8 +64,13 @@ struct EditListView: View {
             }
         }
     }
+    
+    static func dummyRecipe() -> Recipe{
+        let ingredient = Recipe.Ingredient(name: "Potato", price: 1.5)
+        let ingredient2 = Recipe.Ingredient(name: "Oil", price: 1)
+        return Recipe(name: "Chips", ingredients: [ingredient, ingredient2], imageUrl: URL(string: "https://picsum.photos/300") ?? URL(string: "https://picsum.photos/300")!)
+    }
 }
-
 
 struct BuildView_Previews: PreviewProvider {
     static var previews: some View {
