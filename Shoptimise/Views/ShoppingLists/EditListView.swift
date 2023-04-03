@@ -9,10 +9,10 @@ import SwiftUI
 
 struct EditListView: View {
     @State private var searchText = ""
-    @StateObject private var viewModel: EditListViewModel
-    init(shoppingList: ShoppingList){
-        _viewModel = StateObject(wrappedValue: EditListViewModel(shoppingList: shoppingList))
-    }
+    @StateObject private var viewModel = EditListViewModel()
+    
+    @State var selectedShoppingListIndex : Int
+    @EnvironmentObject var lists: ShoppingLists
     
     var body: some View {
         NavigationStack {
@@ -22,7 +22,7 @@ struct EditListView: View {
                 Spacer()
                 List{
                     Section(){
-                        ForEach($viewModel.shoppingList.wrappedValue.recipes, id: \.name) { recipe in
+                        ForEach($lists.shoppingLists[selectedShoppingListIndex].recipes, id: \.name) { $recipe in
                             Text(recipe.name)
                         }
                     } header: {
@@ -32,9 +32,9 @@ struct EditListView: View {
                             Image(systemName: "plus")
                         }
                     }
-                    
+
                     Section(){
-                        ForEach($viewModel.shoppingList.wrappedValue.items, id: \.name) { item in
+                        ForEach($lists.shoppingLists[selectedShoppingListIndex].items, id: \.name) { $item in
                             Text(item.name)
                         }
                     } header: {
@@ -44,12 +44,21 @@ struct EditListView: View {
                             Image(systemName: "plus")
                         }
                     }
+                    
+                    Button {
+                        let recipe = Recipe(name: "recipe", ingredients: [Recipe.Ingredient(name: "ingredient", price: 10)], imageUrl: URL(string: "https://picsum.photos/300")!)
+                                            
+                        lists.shoppingLists[selectedShoppingListIndex].recipes.append(recipe)
+                        
+                    } label: {
+                        Text("ADD RECIPE TO LIST")
+                    }
                 }
                 
             }
         }
         .searchable(text: $searchText)
-        .navigationTitle($viewModel.shoppingList.wrappedValue.name)
+        .navigationTitle($lists.shoppingLists[selectedShoppingListIndex].name)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Image(systemName: "info.circle")
@@ -62,6 +71,6 @@ struct EditListView: View {
 
 struct BuildView_Previews: PreviewProvider {
     static var previews: some View {
-        EditListView(shoppingList: EditListView.PreviewHelper().shoppingList)
+        EditListView(selectedShoppingListIndex: 0).environmentObject(ShoppingLists())
     }
 }

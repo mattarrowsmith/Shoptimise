@@ -9,12 +9,6 @@ import Foundation
 
 extension EditListView{
     @MainActor class EditListViewModel: ObservableObject {
-        
-        @Published var shoppingList: ShoppingList
-        
-        init(shoppingList: ShoppingList) {
-            self.shoppingList = shoppingList
-        }
     }
 }
 
