@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var session = Session()
-
+    @StateObject var lists: ShoppingLists = ShoppingLists()
+    
     var body: some View {
         TabView {
-            ShopView(shoppingLists: $session.shoppingLists.wrappedValue)
+            ShopView()
                 .tabItem {
                     Label("Shop", systemImage: "cart")
                 }
@@ -31,12 +31,12 @@ struct MainView: View {
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
-        }.environmentObject(session)
+        }.environmentObject(lists)
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(lists: ShoppingLists())
     }
 }

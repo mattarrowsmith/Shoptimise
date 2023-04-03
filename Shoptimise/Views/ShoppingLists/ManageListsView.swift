@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ManageListsView: View {
-    @EnvironmentObject var session: Session
+    @EnvironmentObject var lists: ShoppingLists
     @State private var searchText = ""
     
     var body: some View {
@@ -19,18 +19,12 @@ struct ManageListsView: View {
                 Spacer()
                 List(){
                     Section(){
-                        NavigationLink {
-                            //TODO Unwrap correctly
-                            EditListView(shoppingList: $session.shoppingLists.wrappedValue.first!)
-                        } label: {
-                            Text("American")
-                        }
-                        
-                        NavigationLink {
-                            //TODO Unwrap correctly
-                            EditListView(shoppingList: $session.shoppingLists.wrappedValue.last!)
-                        } label: {
-                            Text("Mexican")
+                        ForEach(0..<$lists.shoppingLists.count, id: \.self) { index in
+                            NavigationLink {
+                                EditListView(selectedShoppingListIndex: index).environmentObject(lists)
+                            } label: {
+                                Text($lists.shoppingLists[index].name.wrappedValue)
+                            }
                         }
                     } header: {
                         HStack{
@@ -38,6 +32,18 @@ struct ManageListsView: View {
                             Spacer()
                             Image(systemName: "plus")
                         }
+                    }
+                    Button {
+                        let recipe = Recipe(name: "recipe", ingredients: [Recipe.Ingredient(name: "ingredient", price: 10)], imageUrl: URL(string: "https://picsum.photos/300")!)
+                        let recipe2 = Recipe(name: "recipe2", ingredients: [Recipe.Ingredient(name: "ingredient", price: 10)], imageUrl: URL(string: "https://picsum.photos/300")!)
+                        let item = ShoppingList.Item(name: "Donkey", price: 100)
+                        
+                        let list = ShoppingList(name: "LIST ADDED", recipes: [recipe, recipe2], items: [item])
+                        
+                        lists.shoppingLists.append(list)
+                        
+                    } label: {
+                        Text("ADD LIST")
                     }
                 }
                 
@@ -57,6 +63,6 @@ struct ManageListsView: View {
 
 struct ManageListsView_Previews: PreviewProvider {
     static var previews: some View {
-        ManageListsView()
+        ManageListsView().environmentObject(ShoppingLists())
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct ShoptimiseApp: App {
+
     var body: some Scene {
         WindowGroup {
             MainView()

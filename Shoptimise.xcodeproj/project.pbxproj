@@ -13,7 +13,6 @@
 		9E7EE5E72994454C00F79083 /* EditListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7EE5E62994454C00F79083 /* EditListView.swift */; };
 		9E9A312929C8E57A00B4D099 /* ManageListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A312829C8E57A00B4D099 /* ManageListsView.swift */; };
 		9E9A312B29C8F29900B4D099 /* EditListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A312A29C8F29900B4D099 /* EditListViewModel.swift */; };
-		9E9A316529CB86FD00B4D099 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A316429CB86FD00B4D099 /* Session.swift */; };
 		9E9A316829CB93BC00B4D099 /* ShoppingListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A316729CB93BC00B4D099 /* ShoppingListRepository.swift */; };
 		9E9A316A29CB93CA00B4D099 /* RecipeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A316929CB93CA00B4D099 /* RecipeRepository.swift */; };
 		9E9A316C29CCA8AC00B4D099 /* shopping_lists.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E9A316B29CCA8AC00B4D099 /* shopping_lists.json */; };
@@ -55,7 +54,6 @@
 		9E7EE5E62994454C00F79083 /* EditListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListView.swift; sourceTree = "<group>"; };
 		9E9A312829C8E57A00B4D099 /* ManageListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageListsView.swift; sourceTree = "<group>"; };
 		9E9A312A29C8F29900B4D099 /* EditListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListViewModel.swift; sourceTree = "<group>"; };
-		9E9A316429CB86FD00B4D099 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		9E9A316729CB93BC00B4D099 /* ShoppingListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListRepository.swift; sourceTree = "<group>"; };
 		9E9A316929CB93CA00B4D099 /* RecipeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRepository.swift; sourceTree = "<group>"; };
 		9E9A316B29CCA8AC00B4D099 /* shopping_lists.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = shopping_lists.json; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				9ED78CD1297857E400AD8B7B /* ShoptimiseApp.swift */,
-				9E9A316429CB86FD00B4D099 /* Session.swift */,
 			);
 			path = System;
 			sourceTree = "<group>";
@@ -361,7 +358,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E9A316529CB86FD00B4D099 /* Session.swift in Sources */,
 				9ED78CD4297857E400AD8B7B /* ContentView.swift in Sources */,
 				9E359679299EA5AD0011BECC /* ShoppingList.swift in Sources */,
 				9E7EE5E72994454C00F79083 /* EditListView.swift in Sources */,
