@@ -32,7 +32,14 @@ struct EditListView: View {
                             Image(systemName: "plus")
                         }
                     }
-
+                    
+                    NavigationLink(destination: AddRecipeView().environmentObject(lists)) {
+                        Button {
+                        } label: {
+                            Text("Add Recipe")
+                        }
+                    }
+                        
                     Section(){
                         ForEach($lists.shoppingLists[selectedShoppingListIndex].items, id: \.name) { $item in
                             Text(item.name)
@@ -45,13 +52,16 @@ struct EditListView: View {
                         }
                     }
                     
+
+                    
+                    
                     Button {
-                        let recipe = Recipe(name: "recipe", ingredients: [Recipe.Ingredient(name: "ingredient", price: 10)], imageUrl: URL(string: "https://picsum.photos/300")!)
-                                            
-                        lists.shoppingLists[selectedShoppingListIndex].recipes.append(recipe)
+//                        let recipe = Recipe(name: "recipe", ingredients: [Recipe.Ingredient(name: "ingredient", price: 10)], imageUrl: URL(string: "https://picsum.photos/300")!)
+//
+//                        lists.shoppingLists[selectedShoppingListIndex].recipes.append(recipe)
                         
                     } label: {
-                        Text("ADD RECIPE TO LIST")
+                        Text("Add Ingredient")
                     }
                 }
                 
