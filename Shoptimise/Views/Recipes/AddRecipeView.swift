@@ -12,7 +12,7 @@ struct AddRecipeView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
+            ZStack {
                 HStack{
                     Spacer()
                     Button(){
@@ -43,28 +43,10 @@ struct AddRecipeView: View {
                     Spacer()
                 }.padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
                 List(){
-                    Section("Recipes"){
+                    Section(){
                         ForEach($viewModel.recipeCells) { $recipeCell in
-                            DisclosureGroup(recipeCell.recipe.name, isExpanded: $recipeCell.isExpanded){
-                                HStack() {
-                                    Spacer()
-                                    
-                                    VStack(alignment: .center){
-                                        
-                                        AsyncImage(url: recipeCell.recipe.imageUrl)
-                                            .frame(width: 300, height: 300)
-                                        Text("{Recipe Description}")
-                                    }
-                                    
-                                    Spacer()
-                                }
-                                
-                                VStack(alignment: .leading){
-                                    ForEach(recipeCell.recipe.ingredients, id: \.name) { ingredient in
-                                        Text(ingredient.name)
-                                    }
-                                }
-                            }
+                            RecipeCell()
+
                         }
                     }
                     

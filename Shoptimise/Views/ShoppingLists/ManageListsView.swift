@@ -26,13 +26,14 @@ struct ManageListsView: View {
                                 Text($lists.shoppingLists[index].name.wrappedValue)
                             }
                         }
-                    } header: {
-                        HStack{
-                            Text("Add Recipes")
-                            Spacer()
-                            Image(systemName: "plus")
-                        }
                     }
+//                        header: {
+//                        HStack{
+//                            Text("New List")
+//                            Spacer()
+//                            Image(systemName: "plus")
+//                        }
+//                    }
                     Button {
                         let recipe = Recipe(name: "recipe", ingredients: [Recipe.Ingredient(name: "ingredient", price: 10)], imageUrl: URL(string: "https://picsum.photos/300")!)
                         let recipe2 = Recipe(name: "recipe2", ingredients: [Recipe.Ingredient(name: "ingredient", price: 10)], imageUrl: URL(string: "https://picsum.photos/300")!)

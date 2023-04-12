@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9E0B25D82992DA6B00F2D210 /* PageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0B25D72992DA6B00F2D210 /* PageHeaderView.swift */; };
+		9E30991929E7004E00050EDF /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E30991829E7004E00050EDF /* RecipeCell.swift */; };
 		9E359679299EA5AD0011BECC /* ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E359678299EA5AD0011BECC /* ShoppingList.swift */; };
 		9E540ED1299D5ED80049D52B /* ShopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E540ED0299D5ED80049D52B /* ShopViewModel.swift */; };
 		9E7EE5E72994454C00F79083 /* EditListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7EE5E62994454C00F79083 /* EditListView.swift */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		9E0B25D72992DA6B00F2D210 /* PageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageHeaderView.swift; sourceTree = "<group>"; };
+		9E30991829E7004E00050EDF /* RecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		9E359678299EA5AD0011BECC /* ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingList.swift; sourceTree = "<group>"; };
 		9E540ED0299D5ED80049D52B /* ShopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewModel.swift; sourceTree = "<group>"; };
 		9E7EE5E62994454C00F79083 /* EditListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditListView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				9ED1E82A29AA743F00D646D0 /* AddRecipeViewModel.swift */,
 				9ED1E82829AA5DF700D646D0 /* AddRecipeView.swift */,
+				9E30991829E7004E00050EDF /* RecipeCell.swift */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				9ED78CD4297857E400AD8B7B /* ContentView.swift in Sources */,
 				9E359679299EA5AD0011BECC /* ShoppingList.swift in Sources */,
 				9E7EE5E72994454C00F79083 /* EditListView.swift in Sources */,
+				9E30991929E7004E00050EDF /* RecipeCell.swift in Sources */,
 				9E9A312929C8E57A00B4D099 /* ManageListsView.swift in Sources */,
 				9E0B25D82992DA6B00F2D210 /* PageHeaderView.swift in Sources */,
 				9ED1E82B29AA743F00D646D0 /* AddRecipeViewModel.swift in Sources */,
